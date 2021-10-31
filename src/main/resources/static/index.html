@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Renta Car</title>
+        <meta charset="UTF-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script language="JavaScript" type="text/javascript" src="js/Car.js"></script>
+        <script language="JavaScript" type="text/javascript" src="js/Gama.js"></script>
+        <script language="JavaScript" type="text/javascript" src="js/Client.js"></script>
+        <script language="JavaScript" type="text/javascript" src="js/Message.js"></script>
+        <script language="JavaScript" type="text/javascript" src="js/Reservation.js"></script>
+
+        <!-- AGREEGAR TODAS LAS HOJAS DE CADA TABLA DEL JS -->
+        <link rel="stylesheet" type="text/css" href="css/estilos.css" ></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Sitio web de reservas del reto 3"/>
+        <meta name="keywords" content="Reto3, G1, Mastertech"/>
+        <meta name="author" content="Camilo Andres Beltran Calderon" />
+        <meta name="copyright" content="Propietario del copyright 2021" />
+    
+        <!-- Parte de estilo del cuerpo de la página -->
+        
+    </head>
+    <!-- FRONTED -->
+ 
+    <body>
+
+<header>
+    <h1 class="TituloWebsite">Sitio Rent A Car</h1>
+</header>
+
+        <div class="contenido-total">
+            
+
+            <div id="contenedores-tablas">
+            <!-- Tabla Carros-->
+            
+            <h2 class="Titulo-Tabla">Tabla Carros</h2>
+            <h3 class="Texto-Tablas">Formulario de tabla Carros</h3>
+            
+            <div id="resultadoCar"></div>
+            <script type="text/javascript"> window.onload = autoInicioCar(); </script>
+                      
+            <div>
+                <input type="text" id="CarName" placeholder="nombre">
+                <input type="text" id="CarBrand" placeholder="marca">
+                <input type="text" id="CarYear" placeholder="año">
+                <input type="text" id="CarDescription" placeholder="descripción">
+                <p>gama:</p>                  
+                <select id="select-gama"></select>
+            
+            </div>
+
+                <div>
+                <button onclick="guardarCar();" >Guardar Carro</button>
+                </div>
+            </div>
+              
+
+            <div id="contenedores-tablas">
+            <!-- Tabla Gamas-->
+           
+            <h2 class="Titulo-Tabla">Gama</h2>
+            <h3 class="Texto-Tablas">Formulario de Gamas</h3>
+            
+            <div id="resultadoGama"> </div>
+            <script type="text/javascript"> window.onload= autoInicioGama();</script>
+        
+            <div>
+                <input type="text" id="GamaName" placeholder="nombre gama">
+                <input type="text" id="GamaDescription" placeholder="descripción gama">
+            </div>
+
+            <button onclick="guardarGama()">Guardar Gama</button>
+        </div>
+
+            <div id="contenedores-tablas">
+            <!-- Tabla Clientes --> <!-- CREACIÓN -->
+            <h2 class="Titulo-Tabla">Tabla Clientes</h2>
+            <h3 class="Texto-Tablas">Formulario de tabla Clientes</h3>
+            <br><br>
+            <div id="resultadoClient"> </div>
+            <script type="text/javascript"> window.onload = autoInicioClient(); </script>
+           
+            <div>
+               <input type="text" id="ClientName" placeholder="nombre">
+               <input type="email" id="ClientEmail" placeholder="correo">
+               <input type="number" id="ClientAge" placeholder="edad">
+               <input type="text" id="ClientPassword" placeholder="contraseña">
+            </div>
+            
+           <div>
+           <br>
+               <button onclick="guardarClient()">Guardar!</button>
+           </div>
+           <br><br><br>
+           </div>
+           <div id="contenedores-tablas">
+           <!-- Tabla Mensajes --> <!-- CREACIÓN -->
+           <h2 class="Titulo-Tabla">Tabla Mensajes</h2>
+           <h3 class="Texto-Tablas">Formulario de tabla Mensajes</h3>
+           <br><br>
+           <div id="resultadoMessage"> </div>
+            <script type="text/javascript"> window.onload = autoInicioMessage(); </script>
+           
+           <div>
+               <input type="text" id="MessageCar" placeholder="Car">
+            <p>Cliente:</p>
+               <select id="select-client"></select>
+               <p>Carro:</p>
+               <select id="select-car"></select>
+           </div>
+           <div>
+           <br>
+               <button onclick="guardarMessage()">Guardar!</button>
+           </div>
+        </div>
+        <div id="contenedores-tablas">
+           <!-- Tabla Calificación de Reservas -->
+           <h2 class="Titulo-Tabla">Tabla Calificación de Reservas</h2>
+           <h3 class="Texto-Tablas">Formulario de tabla Calificación de Reservas</h3>
+           <br><br>
+
+           <div id="resultadoReservation"> </div>
+            <script type="text/javascript"> window.onload = autoInicioReservation(); </script>
+           
+           <div>
+               <input type="date" id="Reservationstart" placeholder="mensaje"> 
+               <input type="date" id="Reservationend" placeholder="mensaje">
+               <p>cliente:</p> 
+               <select id="select-client"></select>
+               <p>Carro:</p>
+               <select id="select-car"></select>             
+           </div>
+           <br>
+               <button onclick="guardarReservation()">Guardar!</button>
+               </div>
+   
+           <br><br><br>
+   </div>
+   
+
+    </body>
+
+</html>
