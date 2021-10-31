@@ -8,7 +8,7 @@ function autoInicioGama(){
         success:function(respuesta){
             console.log(respuesta);
             pintarRespuestaGama(respuesta);
-            let $select = $("#select-gama");
+            let $select = $("#Select-Gama");
             $.each(respuesta, function (_id, name) {
                 $select.append('<option value='+name.id+'>'+name.name+'</option>');
                 console.log("select "+name.id);

@@ -13,6 +13,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <script language="JavaScript" type="text/javascript" src="js/Client.js"></script>
         <script language="JavaScript" type="text/javascript" src="js/Message.js"></script>
         <script language="JavaScript" type="text/javascript" src="js/Reservation.js"></script>
+        <script language="JavaScript" type="text/javascript" src="js/reportes/reportes.js"></script>
 
         <!-- AGREEGAR TODAS LAS HOJAS DE CADA TABLA DEL JS -->
         <link rel="stylesheet" type="text/css" href="css/estilos.css" ></script>
@@ -51,7 +52,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <input type="text" id="CarYear" placeholder="año">
                 <input type="text" id="CarDescription" placeholder="descripción">
                 <p>gama:</p>                  
-                <select id="select-gama"></select>
+                <select id="Select-Gama"></select>
             
             </div>
 
@@ -108,11 +109,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             <script type="text/javascript"> window.onload = autoInicioMessage(); </script>
            
            <div>
-               <input type="text" id="MessageCar" placeholder="Car">
+               <input type="text" id="Comentary" placeholder="Car">
             <p>Cliente:</p>
-               <select id="select-client"></select>
+               <select id="Select-Client"></select>
                <p>Carro:</p>
-               <select id="select-car"></select>
+               <select id="Select-Car"></select>
            </div>
            <div>
            <br>
@@ -129,18 +130,34 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             <script type="text/javascript"> window.onload = autoInicioReservation(); </script>
            
            <div>
-               <input type="date" id="Reservationstart" placeholder="mensaje"> 
-               <input type="date" id="Reservationend" placeholder="mensaje">
-               <p>cliente:</p> 
-               <select id="select-client"></select>
+               <input type="date" id="Reservationinicio" placeholder="mensaje"> 
+               <input type="date" id="Reservationfinal" placeholder="mensaje">
+               <p>Cliente:</p>
+               <div>
+               <select id="Select-Client"></select>
                <p>Carro:</p>
-               <select id="select-car"></select>             
+               <select id="Select-Car"></select>
+            </div>       
            </div>
            <br>
                <button onclick="guardarReservation()">Guardar!</button>
-               </div>
+        </div>
    
-           <br><br><br>
+           <br><br><br><br><br><br>
+
+
+           <h1> Reportes Tutoria Domingo en la mañana</h1>
+
+    <button onclick="traerReporteStatus()"> Generar Reporte Status Reservas </button>
+    <div id="resultadoStatus"></div>
+
+    <input type="date" id="RstarDate" placeholder="descripcion">
+    <input type="date" id="RdevolutionDate" placeholder="descripcion">
+    <button onclick="traerReporteDate()"> Generar Reporte por fecha </button>
+    <div id="resultadoDate"></div>
+
+    <button onclick="traerReporteClientes()"> Generar Reporte Clientes y Cantidad de reservas por cliente </button>
+    <div id="resultadoClientes"></div>
    </div>
    
 

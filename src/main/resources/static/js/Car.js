@@ -8,7 +8,7 @@ function autoInicioCar(){
         success:function(respuesta){
             console.log(respuesta);
             pintarRespuestaCar(respuesta);
-            let $select = $("#select-car");
+            let $select = $("#Select-Car");
             $.each(respuesta, function (_id, name) {
                 $select.append('<option value='+name.id+'>'+name.name+'</option>');
                 console.log("select "+name.id);

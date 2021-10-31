@@ -24,9 +24,7 @@ function pintarRespuestaMessage(respuesta){
     let myTable="<table>";
     for(i=0;i<respuesta.length;i++){
         myTable+="<tr>";
-        myTable+="<td>"+respuesta[i].text+"</td>";
-        myTable+="<td>"+respuesta[i].client+"</td>";
-        myTable+="<td>"+respuesta[i].car+"</td>";
+        myTable+="<td>"+respuesta[i].texto+"</td>";
         myTable+="<td> <button onclick=' actualizarMessage("+respuesta[i].id+")'>Actualizar</button>";
         myTable+="<td> <button onclick='borrarMessage("+respuesta[i].id+")'>Borrar</button>";
         myTable+="</tr>";
@@ -39,9 +37,7 @@ function guardarMessage()
 {
     let var2 = 
     {
-        text:$("#MessageCar").val(),
-        client:$("#Messagetext").val(),
-        car:$("#MessageCar").val(),
+        texto:$("#Comentary").val(),        
     };
       
     $.ajax

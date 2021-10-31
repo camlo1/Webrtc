@@ -8,7 +8,7 @@ function autoInicioClient(){
         success:function(respuesta){
             console.log(respuesta);
             pintarRespuestaClient(respuesta);
-            let $select = $("#select-Client");
+            let $select = $("#Select-Client");
             $.each(respuesta, function (_id, name) {
                 $select.append('<option value='+name.id+'>'+name.name+'</option>');
                 console.log("select "+name.id);
@@ -25,7 +25,9 @@ function pintarRespuestaClient(respuesta){
     for(i=0;i<respuesta.length;i++){
         myTable+="<tr>";
         myTable+="<td>"+respuesta[i].name+"</td>";
-        myTable+="<td>"+respuesta[i].description+"</td>";
+        myTable+="<td>"+respuesta[i].email+"</td>";
+        myTable+="<td>"+respuesta[i].age+"</td>";
+        myTable+="<td>"+respuesta[i].password+"</td>";
         myTable+="<td> <button onclick=' actualizarClient("+respuesta[i].id+")'>Actualizar</button>";
         myTable+="<td> <button onclick='borrarClient("+respuesta[i].id+")'>Borrar</button>";
         myTable+="</tr>";

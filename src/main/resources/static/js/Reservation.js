@@ -8,7 +8,7 @@ function autoInicioReservation(){
         success:function(respuesta){
             console.log(respuesta);
             pintarRespuestaReservation(respuesta);
-            let $select = $("#select-Reservation");
+            let $select = $("#Select-Reservation");
             $.each(respuesta, function (_id, name) {
                 $select.append('<option value='+name.id+'>'+name.name+'</option>');
                 console.log("select "+name.id);
@@ -24,8 +24,8 @@ function pintarRespuestaReservation(respuesta){
     let myTable="<table>";
     for(i=0;i<respuesta.length;i++){
         myTable+="<tr>";
-        myTable+="<td>"+respuesta[i].start+"</td>";
-        myTable+="<td>"+respuesta[i].end+"</td>";
+        myTable+="<td>"+respuesta[i].inicio+"</td>";
+        myTable+="<td>"+respuesta[i].final+"</td>";
         myTable+="<td> <button onclick=' actualizarReservation("+respuesta[i].id+")'>Actualizar</button>";
         myTable+="<td> <button onclick='borrarReservation("+respuesta[i].id+")'>Borrar</button>";
         myTable+="</tr>";
@@ -38,8 +38,8 @@ function guardarReservation()
 {
     let var2 = 
     {
-        star:$("#Reservationstart").val(),
-        end:$("#Reservationend").val(),
+        inicio:$("#Reservationinicio").val(),
+        final:$("#Reservationfinal").val(),
     };
       
     $.ajax
