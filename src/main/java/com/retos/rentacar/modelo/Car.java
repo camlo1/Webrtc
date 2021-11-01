@@ -32,17 +32,10 @@ public class Car implements Serializable {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer idCar;
-    
-        private String name;
-    
-    
+    private String name;
     private String brand;
-    
-   
     private Integer year;
-    
     private String description;
-    
     @ManyToOne
     @JoinColumn(name ="idGama")
     @JsonIgnoreProperties("cars")

@@ -10,8 +10,8 @@ function autoInicioClient(){
             pintarRespuestaClient(respuesta);
             let $select = $("#Select-Client");
             $.each(respuesta, function (_id, name) {
-                $select.append('<option value='+name.idClient+'>'+name.name+'</option>');
-                console.log("select "+name.idClient);
+                $select.append('<option value='+name.id+'>'+name.name+'</option>');
+                console.log("select "+name.id);
             }); 
         }
     
@@ -24,12 +24,12 @@ function pintarRespuestaClient(respuesta){
     let myTable="<table>";
     for(i=0;i<respuesta.length;i++){
         myTable+="<tr>";
-        myTable+="<td>"+respuesta[i].name+"</td>";
         myTable+="<td>"+respuesta[i].email+"</td>";
-        myTable+="<td>"+respuesta[i].age+"</td>";
         myTable+="<td>"+respuesta[i].password+"</td>";
-        myTable+="<td> <button onclick=' actualizarClient("+respuesta[i].id+")'>Actualizar</button>";
-        myTable+="<td> <button onclick='borrarClient("+respuesta[i].id+")'>Borrar</button>";
+        myTable+="<td>"+respuesta[i].name+"</td>";
+        myTable+="<td>"+respuesta[i].age+"</td>";
+        myTable+="<td> <button onclick=' actualizarClient("+respuesta[i].idClient+")'>Actualizar</button>";
+        myTable+="<td> <button onclick='borrarClient("+respuesta[i].idClient+")'>Borrar</button>";
         myTable+="</tr>";
     }
     myTable+="</table>";
@@ -40,10 +40,10 @@ function guardarClient()
 {
     let var2 = 
     {
-        name:$("#ClientName").val(),
         email:$("#ClientEmail").val(),
-        age:$("#ClientAge").val(),
         password:$("#ClientPassword").val(),
+        name:$("#ClientName").val(),
+        age:$("#ClientAge").val(),
     };
       
     $.ajax
@@ -83,10 +83,10 @@ function guardarClient()
     let myData=
     {
         idClient:idElemento,
-        name:$("#ClientName").val(),
         email:$("#ClientEmail").val(),
-        age:$("#ClientAge").val(),
         password:$("#ClientPassword").val(),
+        name:$("#ClientName").val(),
+        age:$("#ClientAge").val(),
     };
     console.log(myData);
     let dataToSend=JSON.stringify(myData);
@@ -97,10 +97,10 @@ function guardarClient()
         contentType:"application/JSON",
         datatype:"JSON",
         success:function(respuesta){
-            $("#ClientName").val("");
             $("#ClientEmail").val("");
-            $("#ClientAge").val("");
             $("#ClientPassword").val("");
+            $("#ClientName").val("");
+            $("#ClientAge").val("");
             autoInicioClient();
             alert("Se ha actualizado correctamente el client")
 

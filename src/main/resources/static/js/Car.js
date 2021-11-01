@@ -1,6 +1,5 @@
-
 function autoInicioCar(){
-    console.log("se esta ejecutando tabla Car")
+        console.log("se esta ejecutando tabla Car")
     $.ajax({
         url:"http://140.238.133.71:8080/api/Car/all",
         type:"GET",
@@ -16,7 +15,6 @@ function autoInicioCar(){
         }
     
     })
-
 }
 
 function pintarRespuestaCar(respuesta){
@@ -43,7 +41,7 @@ function guardarCar()
         name:$("#CarName").val(),
         brand:$("#CarBrand").val(),
         year:$("#CarYear").val(),
-        description:$("#CarDescription").val(),
+        description:$("#CarDescription").val()
     };
       
     $.ajax

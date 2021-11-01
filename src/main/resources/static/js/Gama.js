@@ -79,7 +79,6 @@ function actualizarGama(idElemento){
         idGama:idElemento,
         name:$("#GamaName").val(),
         description:$("#GamaDescription").val()
-
     };
     console.log(myData);
     let dataToSend=JSON.stringify(myData);
@@ -90,12 +89,10 @@ function actualizarGama(idElemento){
         contentType:"application/JSON",
         datatype:"JSON",
         success:function(respuesta){
-            $("#resultado").empty();
-            $("#id").val("");
-            $("#Cname").val("");
-            $("#Cdescription").val("");
-            traerInformacionCategorias();
-            alert("se ha Actualizado correctamente la categoria")
+            $("#GamaName").val("");
+            $("#GamaDescription").val("");
+            autoInicioGama();
+            alert("se ha Actualizado correctamente la gama")
         }
     });}
 
@@ -107,14 +104,14 @@ function borrarGama(idElemento){
     };
     let dataToSend=JSON.stringify(myData);
     $.ajax({
-        url:"http://168.138.247.22:80/api/Category/"+idElemento,
+        url:"http://140.238.133.71:8080/api/Gama/"+idElemento,
         type:"DELETE",
         data:dataToSend,
         contentType:"application/JSON",
         datatype:"JSON",
         success:function(respuesta){
-            $("#resultado").empty();
-            traerInformacionCategorias();
+            $("#resultadoGama").empty();
+            autoInicioGama();
             alert("Se ha Eliminado.")
         }
     });
