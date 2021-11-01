@@ -28,31 +28,19 @@ Entidad clase vehículo (tabla Car)
 @Table(name = "car")
 public class Car implements Serializable {
     
-    /*
-    Atributo identificación del vehículo (columna)
-    */
+    
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer idCar;
     
-    /*
-    Atributo nombre del vehículo (columna)
-    */
         private String name;
     
-    /*
-    Atributo marca del vehículo (columna)
-    */
+    
     private String brand;
     
-    /*
-    Atributo año de modelo del vehículo (columna)
-    */
+   
     private Integer year;
     
-    /*
-    Atributo descripción del vehículo (columna)
-    */
     private String description;
     
     @ManyToOne

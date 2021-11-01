@@ -26,8 +26,8 @@ function pintarRespuestaGama(respuesta){
         myTable+="<tr>";
         myTable+="<td>"+respuesta[i].name+"</td>";
         myTable+="<td>"+respuesta[i].description+"</td>";
-        myTable+="<td> <button onclick=' actualizarGama("+respuesta[i].id+")'>Actualizar</button>";
-        myTable+="<td> <button onclick='borrarGama("+respuesta[i].id+")'>Borrar</button>";
+        myTable+="<td> <button onclick=' actualizarGama("+respuesta[i].idGama+")'>Actualizar</button>";
+        myTable+="<td> <button onclick='borrarGama("+respuesta[i].idGama+")'>Borrar</button>";
         myTable+="</tr>";
     }
     myTable+="</table>";
@@ -67,3 +67,56 @@ function guardarGama()
     });
 }
 
+function actualizarGama(idElemento){
+    
+    if ($("#GamaName").val().length==0 || $("#GamaDescription").val().length==0){
+
+        alert("Todos los campos son obligatorios");
+    }else{
+    
+    
+    let myData={
+        idGama:idElemento,
+        name:$("#GamaName").val(),
+        description:$("#GamaDescription").val()
+
+    };
+    console.log(myData);
+    let dataToSend=JSON.stringify(myData);
+    $.ajax({
+        url:"http://140.238.133.71:8080/api/Gama/update",
+        type:"PUT",
+        data:dataToSend,
+        contentType:"application/JSON",
+        datatype:"JSON",
+        success:function(respuesta){
+            $("#resultado").empty();
+            $("#id").val("");
+            $("#Cname").val("");
+            $("#Cdescription").val("");
+            traerInformacionCategorias();
+            alert("se ha Actualizado correctamente la categoria")
+        }
+    });}
+
+}
+
+function borrarGama(idElemento){
+    let myData={
+        id:idElemento
+    };
+    let dataToSend=JSON.stringify(myData);
+    $.ajax({
+        url:"http://168.138.247.22:80/api/Category/"+idElemento,
+        type:"DELETE",
+        data:dataToSend,
+        contentType:"application/JSON",
+        datatype:"JSON",
+        success:function(respuesta){
+            $("#resultado").empty();
+            traerInformacionCategorias();
+            alert("Se ha Eliminado.")
+        }
+    });
+
+}

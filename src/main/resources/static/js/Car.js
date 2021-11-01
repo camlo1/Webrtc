@@ -28,8 +28,8 @@ function pintarRespuestaCar(respuesta){
         myTable+="<td>"+respuesta[i].brand+"</td>";
         myTable+="<td>"+respuesta[i].year+"</td>";
         myTable+="<td>"+respuesta[i].description+"</td>";
-        myTable+="<td> <button onclick=' actualizarCar("+respuesta[i].id+")'>Actualizar</button>";
-        myTable+="<td> <button onclick='borrarCar("+respuesta[i].id+")'>Borrar</button>";
+        myTable+="<td> <button onclick=' actualizarCar("+respuesta[i].idCar+")'>Actualizar</button>";
+        myTable+="<td> <button onclick='borrarCar("+respuesta[i].idCar+")'>Borrar</button>";
         myTable+="</tr>";
     }
     myTable+="</table>";
@@ -76,7 +76,7 @@ function guardarCar()
 function actualizarCar(idElemento){
     let myData=
     {
-        id:idElemento,
+        idCar:idElemento,
         name:$("#CarName").val(),
         brand:$("#CarBrand").val(),
         year:$("#CarYear").val(),
@@ -96,7 +96,7 @@ function actualizarCar(idElemento){
             $("#CarYear").val("");
             $("#CarDescription").val("");
             autoInicioCar();
-            alert("Se ha actualizado correctamente el carro")
+            alert("Se ha actualizado correctamente la car")
 
         }
 
@@ -106,15 +106,10 @@ function actualizarCar(idElemento){
 function borrarCar(idElemento){
     let myData={
         id:idElemento,
-        name:$("#CarName").val(),
-        brand:$("#CarBrand").val(),
-        year:$("#CarYear").val(),
-        description:$("#CarDescription").val(),
-
     };
     let dataToSend=JSON.stringify(myData);
     $.ajax({
-        url:"http://140.238.133.71:8080/api/Car/delete",
+        url:"http://140.238.133.71:8080/api/Car/"+idElemento,
         type:"DELETE",
         data:dataToSend,
         contentType:"application/JSON",
@@ -122,7 +117,7 @@ function borrarCar(idElemento){
         success:function(respuesta){
             $("#resultadoCar").empty();
             autoInicioCar();
-            alert("Se ha borrado correctamenteel carro")
+            alert("Se ha borrado correctamente la car")
         }
     });
 }  

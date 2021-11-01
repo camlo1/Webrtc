@@ -10,8 +10,8 @@ function autoInicioClient(){
             pintarRespuestaClient(respuesta);
             let $select = $("#Select-Client");
             $.each(respuesta, function (_id, name) {
-                $select.append('<option value='+name.id+'>'+name.name+'</option>');
-                console.log("select "+name.id);
+                $select.append('<option value='+name.idClient+'>'+name.name+'</option>');
+                console.log("select "+name.idClient);
             }); 
         }
     
@@ -66,7 +66,7 @@ function guardarClient()
         error: function(_jqXHR, _textStatus, _errorThrown) 
         {
             window.location.reload()
-            alert("No se guardo correctamente la Client");
+            alert("No se guardo correctamente el Client");
         }
     });
 }
@@ -78,10 +78,11 @@ function guardarClient()
  */
 
 
-function actualizarClient(idElemento){
+
+ function actualizarClient(idElemento){
     let myData=
     {
-        idElemento,
+        idClient:idElemento,
         name:$("#ClientName").val(),
         email:$("#ClientEmail").val(),
         age:$("#ClientAge").val(),
@@ -95,13 +96,13 @@ function actualizarClient(idElemento){
         data:dataToSend,
         contentType:"application/JSON",
         datatype:"JSON",
-        success:function(_respuesta){
+        success:function(respuesta){
             $("#ClientName").val("");
             $("#ClientEmail").val("");
             $("#ClientAge").val("");
             $("#ClientPassword").val("");
             autoInicioClient();
-            alert("Se ha actualizado correctamente el Client");
+            alert("Se ha actualizado correctamente el client")
 
         }
 
@@ -110,19 +111,19 @@ function actualizarClient(idElemento){
 
 function borrarClient(idElemento){
     let myData={
-        id:idElemento
+        id:idElemento,
     };
     let dataToSend=JSON.stringify(myData);
     $.ajax({
-        url:"http://140.238.133.71:8080/api/Client/delete",
+        url:"http://140.238.133.71:8080/api/Client/"+idElemento,
         type:"DELETE",
         data:dataToSend,
         contentType:"application/JSON",
         dataType:"JSON",
         success:function(respuesta){
-            $("#resultadoCar").empty();
+            $("#resultadoClient").empty();
             autoInicioClient();
-            alert("Se ha borrado correctamenteel Client")
+            alert("Se ha borrado correctamente el client")
         }
     });
 }  
