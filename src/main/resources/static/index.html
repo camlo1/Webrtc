@@ -58,8 +58,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
                 <div>
                 <button onclick="guardarCar();" >Guardar Carro</button>
+
                 </div>
             </div>
+        
               
 
             <div id="contenedores-tablas">
@@ -93,14 +95,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                <input type="number" id="ClientAge" placeholder="edad">
                <input type="text" id="ClientPassword" placeholder="contraseña">
             </div>
-            
+        
            <div>
            <br>
                <button onclick="guardarClient()">Guardar!</button>
            </div>
            <br><br><br>
            </div>
-           <div id="contenedores-tablas">
+        <div id="contenedores-tablas">
            <!-- Tabla Mensajes --> <!-- CREACIÓN -->
            <h2 class="Titulo-Tabla">Tabla Mensajes</h2>
            <h3 class="Texto-Tablas">Formulario de tabla Mensajes</h3>
@@ -109,8 +111,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             <script type="text/javascript"> window.onload = autoInicioMessage(); </script>
            
            <div>
-               <input type="text" id="Comentary" placeholder="Car">
-            <p>Cliente:</p>
+               <input data-="text" id="messageText" placeholder="Car">
+                <p>Cliente:</p>
                <select id="Select-Client"></select>
                <p>Carro:</p>
                <select id="Select-Car"></select>
@@ -130,14 +132,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             <script type="text/javascript"> window.onload = autoInicioReservation(); </script>
            
            <div>
-               <input type="date" id="Reservationinicio" placeholder="mensaje"> 
-               <input type="date" id="Reservationfinal" placeholder="mensaje">
+               <input type="date" id="Reservationinicio" placeholder="inicio"> 
+               <input type="date" id="Reservationfinal" placeholder="final  ">
+               </div>
+               <p>Status:</p>
+               <select id="Status"></select>     
                <p>Cliente:</p>
-               <div>
                <select id="Select-Client"></select>
                <p>Carro:</p>
                <select id="Select-Car"></select>
-            </div>       
            </div>
            <br>
                <button onclick="guardarReservation()">Guardar!</button>

@@ -80,7 +80,7 @@ function actualizarCar(idElemento){
         name:$("#CarName").val(),
         brand:$("#CarBrand").val(),
         year:$("#CarYear").val(),
-        description:$("#CarDescription").val()
+        description:$("#CarDescription").val(),
     };
     console.log(myData);
     let dataToSend=JSON.stringify(myData);
@@ -105,7 +105,12 @@ function actualizarCar(idElemento){
 
 function borrarCar(idElemento){
     let myData={
-        id:idElemento
+        id:idElemento,
+        name:$("#CarName").val(),
+        brand:$("#CarBrand").val(),
+        year:$("#CarYear").val(),
+        description:$("#CarDescription").val(),
+
     };
     let dataToSend=JSON.stringify(myData);
     $.ajax({
@@ -121,36 +126,3 @@ function borrarCar(idElemento){
         }
     });
 }  
-
-
-
-
-/**
- *          código
-function borrarElemento(idElemento)
-{
-    let myData=
-    {
-        id:idElemento,
-    };
-    
-    let dataToSend=JSON.stringify(myData);
-    
-    $.ajax(
-    {
-        url:"https://g8da38fdefea20d-db202109251601.adb.ca-toronto-1.oraclecloudapps.com/ords/admin/car/car",
-        type:"DELETE",
-        data:dataToSend,
-        contentType:"application/JSON",
-        datatype:"JSON",
-        success:function(_respuesta)
-        {
-            $("#resultado").empty();
-            traerInformacion();
-            alert("se ha borrado el dato")
-        }
-    });
-}
-*/
-
-

@@ -70,3 +70,59 @@ function guardarClient()
         }
     });
 }
+
+/**
+ * 
+ * 
+ * CRUD faltante
+ */
+
+
+function actualizarClient(idElemento){
+    let myData=
+    {
+        idElemento,
+        name:$("#ClientName").val(),
+        email:$("#ClientEmail").val(),
+        age:$("#ClientAge").val(),
+        password:$("#ClientPassword").val(),
+    };
+    console.log(myData);
+    let dataToSend=JSON.stringify(myData);
+    $.ajax({
+        url:"http://140.238.133.71:8080/api/Client/update",
+        type:"PUT",
+        data:dataToSend,
+        contentType:"application/JSON",
+        datatype:"JSON",
+        success:function(_respuesta){
+            $("#ClientName").val("");
+            $("#ClientEmail").val("");
+            $("#ClientAge").val("");
+            $("#ClientPassword").val("");
+            autoInicioClient();
+            alert("Se ha actualizado correctamente el Client");
+
+        }
+
+    });
+}
+
+function borrarClient(idElemento){
+    let myData={
+        id:idElemento
+    };
+    let dataToSend=JSON.stringify(myData);
+    $.ajax({
+        url:"http://140.238.133.71:8080/api/Client/delete",
+        type:"DELETE",
+        data:dataToSend,
+        contentType:"application/JSON",
+        dataType:"JSON",
+        success:function(respuesta){
+            $("#resultadoCar").empty();
+            autoInicioClient();
+            alert("Se ha borrado correctamenteel Client")
+        }
+    });
+}  

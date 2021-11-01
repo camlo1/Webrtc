@@ -24,8 +24,11 @@ function pintarRespuestaReservation(respuesta){
     let myTable="<table>";
     for(i=0;i<respuesta.length;i++){
         myTable+="<tr>";
-        myTable+="<td>"+respuesta[i].inicio+"</td>";
-        myTable+="<td>"+respuesta[i].final+"</td>";
+        myTable+="<td>"+respuesta[i].startDate+"</td>";
+        myTable+="<td>"+respuesta[i].devolutionDate+"</td>";        
+        myTable+="<td>"+respuesta[i].status+"</td>";        
+        myTable+="<td>"+respuesta[i].client+"</td>";        
+        myTable+="<td>"+respuesta[i].car+"</td>";
         myTable+="<td> <button onclick=' actualizarReservation("+respuesta[i].id+")'>Actualizar</button>";
         myTable+="<td> <button onclick='borrarReservation("+respuesta[i].id+")'>Borrar</button>";
         myTable+="</tr>";
@@ -38,8 +41,11 @@ function guardarReservation()
 {
     let var2 = 
     {
-        inicio:$("#Reservationinicio").val(),
-        final:$("#Reservationfinal").val(),
+        startDate:$("#Reservationinicio").val(),
+        devolutionDate:$("#Reservationfinal").val(),
+        status:$("#Status").val(),
+        client:{idClient: +$("#Select-Client").val()},
+        car:{idCar: +$("#Select-Car").val()},
     };
       
     $.ajax

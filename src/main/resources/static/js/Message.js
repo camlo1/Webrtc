@@ -24,9 +24,9 @@ function pintarRespuestaMessage(respuesta){
     let myTable="<table>";
     for(i=0;i<respuesta.length;i++){
         myTable+="<tr>";
-        myTable+="<td>"+respuesta[i].texto+"</td>";
-        myTable+="<td> <button onclick=' actualizarMessage("+respuesta[i].id+")'>Actualizar</button>";
-        myTable+="<td> <button onclick='borrarMessage("+respuesta[i].id+")'>Borrar</button>";
+        myTable+="<td>"+respuesta[i].messageText+"</td>";
+        myTable+="<td> <button onclick=' actualizarMessage("+respuesta[i].idMessage+")'>Actualizar</button>";
+        myTable+="<td> <button onclick='borrarMessage("+respuesta[i].idMessage+")'>Borrar</button>";
         myTable+="</tr>";
     }
     myTable+="</table>";
@@ -34,10 +34,10 @@ function pintarRespuestaMessage(respuesta){
 }
 
 function guardarMessage()
-{
+    {
     let var2 = 
     {
-        texto:$("#Comentary").val(),        
+        messageText:$("#comentary").val(),        
     };
       
     $.ajax
@@ -64,3 +64,52 @@ function guardarMessage()
         }
     });
 }
+
+
+function actualizarMessage(idElemento){
+    let myData=
+    {
+        idMessage:idElemento,
+        messageText:$("#ClientName").val(),
+        client:{idClient: +$("#Select-Client").val()},
+        car:{idCar: +$("#Select-Car").val()}
+    };
+    console.log(myData);
+    let dataToSend=JSON.stringify(myData);
+    $.ajax({
+        url:"http://140.238.133.71:8080/api/Client/update",
+        type:"PUT",
+        data:dataToSend,
+        contentType:"application/JSON",
+        datatype:"JSON",
+        success:function(_respuesta){
+            $("#ClientName").val("");
+            $("#ClientEmail").val("");
+            $("#ClientAge").val("");
+            $("#ClientPassword").val("");
+            autoInicioMessage();
+            alert("Se ha actualizado correctamente el Client");
+
+        }
+
+    });
+}
+
+function borrarMessage(idElemento){
+    let myData={
+        idMessage:idElemento
+    };
+    let dataToSend=JSON.stringify(myData);
+    $.ajax({
+        url:"http://140.238.133.71:8080/api/Message/delete"+idElemento,
+        type:"DELETE",
+        data:dataToSend,
+        contentType:"application/JSON",
+        dataType:"JSON",
+        success:function(respuesta){
+            $("#resultadoMessage").empty();
+            autoInicioMessage();
+            alert("Se ha borrado correctamenteel Client")
+        }
+    });
+}  
