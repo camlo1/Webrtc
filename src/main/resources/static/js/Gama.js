@@ -1,4 +1,23 @@
 
+ 
+
+
+function autoInicioGama(){
+    $.ajax({
+        url:"http://140.238.133.71:8080/api/Gama/all",
+        type: "GET",
+        datatype: "JSON",
+        success: function (respuesta) {
+            console.log(respuesta);
+            pintarRespuestaGama(respuesta);
+        }
+
+    });
+
+}
+
+
+/**
 function autoInicioGama(){
     console.log("se esta ejecutando tabla Gama")
     $.ajax({
@@ -18,14 +37,18 @@ function autoInicioGama(){
     })
 
 }
+ */
 
 function pintarRespuestaGama(respuesta){
-
+    console.log("CONTENIDO GAMA");
+    console.log(respuesta);
     let myTable="<table>";
     for(i=0;i<respuesta.length;i++){
         myTable+="<tr>";
         myTable+="<td>"+respuesta[i].name+"</td>";
         myTable+="<td>"+respuesta[i].description+"</td>";
+        myTable+="<td>"+respuesta[i].car+"</td>";
+        //myTable+="<td>"+respuesta[i].cars.car+"</td>";
         myTable+="<td> <button onclick=' actualizarGama("+respuesta[i].idGama+")'>Actualizar</button>";
         myTable+="<td> <button onclick='borrarGama("+respuesta[i].idGama+")'>Borrar</button>";
         myTable+="</tr>";
@@ -40,6 +63,8 @@ function guardarGama()
     {
         name:$("#GamaName").val(),
         description:$("#GamaDescription").val(),
+        //car:$("#Select-Car").val(),
+        car:{idCar: +$("#Select-Car").val()},
     };
       
     $.ajax
@@ -56,6 +81,7 @@ function guardarGama()
             console.log(respuesta);
             console.log("Se guardo correctamente la gama");
             alert("Se guardo correctamente la gama");
+            pintarRespuestaGama
             window.location.reload()
         },
         
@@ -78,7 +104,8 @@ function actualizarGama(idElemento){
     let myData={
         idGama:idElemento,
         name:$("#GamaName").val(),
-        description:$("#GamaDescription").val()
+        description:$("#GamaDescription").val(),
+        cars:{car: +$("#Select-Car").val()},
     };
     console.log(myData);
     let dataToSend=JSON.stringify(myData);

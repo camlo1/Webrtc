@@ -1,4 +1,24 @@
 function autoInicioCar(){
+    console.log("se esta ejecutando tabla Car")
+$.ajax
+({
+    url:"http://155.248.227.6:8080/api/Car/all",
+    type:"GET",
+    datatype:"JSON",
+    success:function(respuesta){
+        console.log(respuesta);
+        pintarRespuestaCar(respuesta);
+        let $select = $("#Select-Car");
+        $.each(respuesta, function (id, name) {
+            $select.append('<option value='+name.id+'>'+name.name+'</option>');
+            console.log("select "+name.id);
+        }); 
+    }
+})
+}
+
+
+function autoInicioCar(){
         console.log("se esta ejecutando tabla Car")
     $.ajax({
         url:"http://140.238.133.71:8080/api/Car/all",
@@ -26,6 +46,7 @@ function pintarRespuestaCar(respuesta){
         myTable+="<td>"+respuesta[i].brand+"</td>";
         myTable+="<td>"+respuesta[i].year+"</td>";
         myTable+="<td>"+respuesta[i].description+"</td>";
+        myTable+="<td>"+respuesta[i].gama.{name}+"</td>";
         myTable+="<td> <button onclick=' actualizarCar("+respuesta[i].idCar+")'>Actualizar</button>";
         myTable+="<td> <button onclick='borrarCar("+respuesta[i].idCar+")'>Borrar</button>";
         myTable+="</tr>";
@@ -34,14 +55,15 @@ function pintarRespuestaCar(respuesta){
     $("#resultadoCar").html(myTable);
 }
 
-function guardarCar()
-{
+function guardarCar(){
+    console.log(respuesta[0].gama[0].name)
     let var2 = 
     {
         name:$("#CarName").val(),
         brand:$("#CarBrand").val(),
         year:$("#CarYear").val(),
-        description:$("#CarDescription").val()
+        description:$("#CarDescription").val(),
+        gama:{idGama: $("#Select-Gama").val()},
     };
       
     $.ajax
@@ -50,7 +72,6 @@ function guardarCar()
         contentType: "application/json; charset=utf-8",
         dataType: 'JSON',
         data: JSON.stringify(var2),
-        
         url:"http://140.238.133.71:8080/api/Car/save",
               
         success:function(respuesta) 

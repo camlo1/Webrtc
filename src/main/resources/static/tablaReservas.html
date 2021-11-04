@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- INFO -->
+    <title>Reservas</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/estilos.css" ></script>
+    <link rel="stylesheet" type="text/css" href="css/menu.css" ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script language="JavaScript" type="text/javascript" src="js/Reservation.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sitio web reto 5"/>
+    <meta name="keywords" content="Reto3, G1, Mastertech"/>
+    <meta name="author" content="Camilo Beltran" />
+    <meta name="copyright" content="Propietario del copyright 2021" />
+    <!--IMPORTS-->
+</head>
+
+    <!-- FRONTED -->
+<body>
+    <header>
+        <h1 class="TituloPrincipal">Reserve!</h1>
+    <nav class="menu">
+        <ul>
+        <li><a href="index.html">inicio</a></li>
+        <li><a href="tablaCarros.html">Carros</a>
+        <li><a href="tablaGama.html">Gamas</a></li>
+        <li><a href="tablaClientes.html">Clientes</a></li>
+        <li><a href="tablaMensajes.html">Mensajes</a></li>
+        <li><a href="tablaReservas.html">Reservas</a></li>
+        <li><a href="reportes.html">Reportes</a></li>
+        </ul>
+    </nav>
+    </header>
+<!-- CONTENIDOS -->
+   <section>
+       <br><br>
+    <div id="contenedores-tablas">
+        <br>
+       <h2 class="Titulo-Tabla">Tabla Calificación de Reservas</h2>
+       <h3 class="Texto-Tablas">Formulario de tabla Calificación de Reservas</h3>
+       <br><br>
+
+       <div id="resultadoReservation"> </div>
+        <script type="text/javascript"> window.onload = autoInicioReservation(); </script>
+       
+       <div>
+           <input type="date" id="Reservationinicio" placeholder="inicio"> 
+           <input type="date" id="Reservationfinal" placeholder="final  ">
+           </div>
+           <p>Status:</p>
+           <select id="Status"></select>     
+           <p>Cliente:</p>
+           <select id="Select-Client"></select>
+           <p>Carro:</p>
+           <select id="Select-Car"></select>
+           
+           <button onclick="guardarReservation()">Guardar!</button>
+       </div>
+       <br>
+           
+       <br><br><br>
+    </div>
+
+
+
+
+
+<br><br><br>
+<br><br><br>
+<br><br><br>
+</section>
+
+<!-- PIE-->
+    <footer>
+        pie de página
+    </footer>
+<!--FIN TOTAL-->
+
+</body>
+</html>

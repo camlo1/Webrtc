@@ -47,8 +47,8 @@ function pintarRespuestaReservation(respuesta){
         myTable+="<td>"+respuesta[i].startDate+"</td>";
         myTable+="<td>"+respuesta[i].devolutionDate+"</td>";        
         myTable+="<td>"+respuesta[i].status+"</td>";        
-        myTable+="<td>"+respuesta[i].client+"</td>";        
-        myTable+="<td>"+respuesta[i].car+"</td>";
+        myTable+="<td>"+respuesta[i].client.name+"</td>";        
+        myTable+="<td>"+respuesta[i].car.name+"</td>";
         myTable+="<td> <button onclick=' actualizarReservation("+respuesta[i].id+")'>Actualizar</button>";
         myTable+="<td> <button onclick='borrarReservation("+respuesta[i].id+")'>Borrar</button>";
         myTable+="</tr>";

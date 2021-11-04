@@ -6,7 +6,7 @@ function autoInicioRelacionCliente(){
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){
-            let $select = $("#select-Client");
+            let $select = $("#Select-Client");
             $.each(respuesta, function (id, name) {
                 $select.append('<option value='+name.idClient+'>'+name.name+'</option>');
             
@@ -49,33 +49,28 @@ function pintarRespuestaMessage(respuesta){
 }
 
 function guardarMessage(){
-    if ($("#messagetext").val().length==0 ){
-
-        alert("Todos los campos son obligatorios");
-    }else{
+    {
     
     
-    let var2 = {
-        
-        messageText:$("#messageText").val(),
-        car:{idCar: +$("#Select-Car").val()},
-        client:{idClient: +$("#Select-client").val()},
+    let var2 = 
+    {
+    messageText:$("#messageText").val(),
+    car:{idCar: +$("#Select-Car").val()},
+    client:{idClient: +$("#Select-Client").val()},
 
-     
-        };
-       
-        console.log(var2);
-        $.ajax({
+    };
+    $.ajax
+    ({
         type:'POST',
         contentType: "application/json; charset=utf-8",
         dataType: 'JSON',
         data: JSON.stringify(var2),
-        
-        url:"http://140.238.133.71:8080/api/Message/",
+        url:"http://140.238.133.71:8080/api/Message/save",
        
         
-        success:function(response) {
-                console.log(response);
+        success:function(response) 
+        {
+            console.log(response);
             console.log("Se guardo correctamente");
             alert("Se guardo correctamente");
             window.location.reload()
@@ -106,17 +101,17 @@ function actualizarMessage(idElemento){
     console.log(myData);
     let dataToSend=JSON.stringify(myData);
     $.ajax({
-        url:"http://140.238.133.71:8080/api/Message/",
+        url:"http://140.238.133.71:8080/api/Message/update",
         type:"PUT",
         data:dataToSend,
         contentType:"application/JSON",
         datatype:"JSON",
         success:function(respuesta){ 
             $("#messageText").val("");
-            $("#Select-Client").empty();
-            $("#Select-Car").empty();
+            $("#Select-Client").val("");
+            $("#Select-Car").val(""); //Algunos dice empty();
            
-            autoInicioMensajes();
+            autoInicioMessage();
             alert("se ha Actualizado correctamente el Mensaje")
         }
     });
@@ -137,7 +132,7 @@ function borrarMessage(idElemento){
         datatype:"JSON",
         success:function(respuesta){
             $("#resultadoMessage").empty();
-            autoInicioMensajes();
+            autoInicioMessage();
             alert("Se ha Eliminado el mensaje")
         }
     });

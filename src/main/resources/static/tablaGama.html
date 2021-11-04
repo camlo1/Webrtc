@@ -2,10 +2,12 @@
 <html>
 <head>
     <!-- INFO -->
-    <title>Rentacar</title>
+    <title>Gamas</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="css/estilos.css" ></script>
     <link rel="stylesheet" type="text/css" href="css/menu.css" ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script language="JavaScript" type="text/javascript" src="js/Gama.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Sitio web reto 5"/>
     <meta name="keywords" content="Reto3, G1, Mastertech"/>
@@ -17,10 +19,8 @@
     <!-- FRONTED -->
 <body>
     <header>
-        <h1 class="TituloPrincipal">Website Renta Car</h1>
-        
+        <h1 class="TituloPrincipal">Gamas</h1>
     <nav class="menu">
-            
         <ul>
         <li><a href="index.html">inicio</a></li>
         <li><a href="tablaCarros.html">Carros</a>
@@ -29,34 +29,45 @@
         <li><a href="tablaMensajes.html">Mensajes</a></li>
         <li><a href="tablaReservas.html">Reservas</a></li>
         <li><a href="reportes.html">Reportes</a></li>
-
         </ul>
-        
     </nav>
     </header>
-
-    <!-- CONTENIDOS -->
-    <section>
-        <div id="contenedores-tablas">
+<!-- CONTENIDOS -->
+   <section>
+    <br><br>
+    <div id="contenedores-tablas">
         <br>
-            <h2>Bienvenido!</h2>
-            <p>En este sitio web podrá reservar el carro que desee</p>
+      
+       <h2 class="Titulo-Tabla">Gama</h2>
+       <h3 class="Texto-Tablas">Formulario de Gamas</h3>
+       
+       <div id="resultadoGama"> </div>
+       <script type="text/javascript"> window.onload= autoInicioGama();</script>
+   
+       <div>
+           <input type="text" id="GamaName" placeholder="nombre gama">
+           <input type="text" id="GamaDescription" placeholder="descripción gama">
+          <p>car</p>
+           <select id="Select-Car"></select>
+         
+       </div>
+
+       <button onclick="guardarGama()">Guardar Gama</button>
+       
+       <br><br><br>
+   </div>
+  
 
 
-            <br>
-        </div>  
 
 
 
-
-
-
-    <br><br><br>
-    <br><br><br>
-    <br><br><br>
+<br><br><br>
+<br><br><br>
+<br><br><br>
 </section>
 
-    <!-- PIE-->
+<!-- PIE-->
     <footer>
         pie de página
     </footer>
