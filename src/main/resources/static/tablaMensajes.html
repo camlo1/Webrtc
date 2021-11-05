@@ -45,11 +45,17 @@
     <script type="text/javascript"> window.onload = autoInicioMessage(); </script>
    
    <div>
-       <input data-="text" id="messageText" placeholder="Car">
+       <input data-="text" id="messageText" placeholder="Mensajes">
         <p>Cliente:</p>
-       <select id="Select-Client"></select>
+       <select id="select-client"></select>
+       <script type="text/javascript"> window.onload = relacionClient(); </script>
+       
+
+
        <p>Carro:</p>
-       <select id="Select-Car"></select>
+       <select id="select-car"></select>
+       <script type="text/javascript"> window.onload = relacionCar(); </script>
+       
    </div>
    <div>
    <br>

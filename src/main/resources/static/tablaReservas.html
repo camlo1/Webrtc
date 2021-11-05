@@ -49,14 +49,25 @@
            <input type="date" id="Reservationfinal" placeholder="final  ">
            </div>
            <p>Status:</p>
-           <select id="Status"></select>     
+           <select id="select-satus"></select>
+           <script type="text/javascript"> window.onload = relacionStatus(); </script>
+       
+           <p>Car:</p>
+           <select id="select-car"></select>
+           <script type="text/javascript"> window.onload = relacionCar(); </script>
+       
            <p>Cliente:</p>
-           <select id="Select-Client"></select>
-           <p>Carro:</p>
-           <select id="Select-Car"></select>
-           
+           <select id="select-client"></select>
+           <script type="text/javascript"> window.onload = relacionClient(); </script>
+       
+           <p>Score:</p>
+           <select id="select-score"></select>
+           <script type="text/javascript"> window.onload = relacionScore(); </script>
+       
+            <br><br>                   
            <button onclick="guardarReservation()">Guardar!</button>
-       </div>
+            <br><br>
+        </div>
        <br>
            
        <br><br><br>

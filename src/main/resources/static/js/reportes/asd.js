@@ -1,210 +1,162 @@
-function autoInicioCategoria(){
-    console.log("se esta ejecutando")
+function autoInicioRelacionCliente(){
+    
     $.ajax({
-        url:"http://168.138.247.22:80/api/Category/all",
+        url:"http://168.138.247.22:80/api/Client/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){
-            console.log(respuesta);
-            let $select = $("#select-category");
+          
+            let $select = $("#select-client");
             $.each(respuesta, function (id, name) {
-                $select.append('<option value='+name.id+'>'+name.name+'</option>');
-                console.log("select "+name.id);
+                $select.append('<option value='+name.idClient+'>'+name.name+'</option>');
+            
             }); 
         }
     
     })
 }
-//Manejador GET
-function traerInformacionSkate() {
+function autoInicioSkate(){
+
     $.ajax({
         url:"http://168.138.247.22:80/api/Skate/all",
-        //url: "http://localhost:8080/api/Skate/all",
-        type: "GET",
-        datatype: "JSON",
-        success: function (response) {
-            console.log(response);
-            pintarRespuestaSkate(response);
+        type:"GET",
+        datatype:"JSON",
+        success:function(respuesta){
+        
+            let $select = $("#select-skate");
+            $.each(respuesta, function (id, name) {
+                $select.append('<option value='+name.id+'>'+name.name+'</option>');
+         
+            }); 
         }
+    
+    })
+}
 
-    });
+
+function autoInicioMensajes(){
+    console.log("se esta ejecutando")
+    $.ajax({
+        url:"http://168.138.247.22:80/api/Message/all",
+        type:"GET",
+        datatype:"JSON",
+        success:function(respuesta){
+            console.log(respuesta);
+            pintarRespuestaMensajes(respuesta);
+        }
+    
+    })
 
 }
 
-function pintarRespuestaSkate(response){
+function pintarRespuestaMensajes(respuesta){
 
-    let myTable="<table>"
-    myTable+="<tr>";
-        myTable+="<td>Nombre</td>";
-        myTable+="<td>Modelo</td>";
-        myTable+="<td>Año</td>";
-        myTable+="<td>Descripcion</td>";
-        myTable+="<td>Categoria</td>";
-    "</tr>";
-
-    for(i=0;i<response.length;i++){
-    myTable+="<tr>";
-        myTable+="<td>" + response[i].name + "</td>";
-        myTable+="<td>" + response[i].brand + "</td>";
-        myTable+="<td>" + response[i].year + "</td>";
-        myTable+="<td>" + response[i].description + "</td>";
-        myTable+="<td>" + response[i].category.name + "</td>";
-        myTable+='<td><button class = "botonSkate2" onclick="borrar(' + response[i].id + ')">Borrar Skate!</button></td>';
-        myTable+='<td><button class = "botonSkate2" onclick="cargarDatosSkate(' + response[i].id + ')">Editar Skate!</button></td>';
-        myTable+='<td><button class = "botonSkate2" onclick="actualizar(' + response[i].id + ')">Actualizar Skate!</button></td>';
+    let myTable="<table>";
+    for(i=0;i<respuesta.length;i++){
+        myTable+="<tr>";
+        
+        myTable+="<td>"+respuesta[i].messageText+"</td>";
+        myTable+="<td>"+respuesta[i].skate.name+"</td>";
+        myTable+="<td>"+respuesta[i].client.name+"</td>";
+        myTable+="<td> <button onclick=' actualizarInformacionMensaje("+respuesta[i].idMessage+")'>Actualizar</button>";
+        myTable+="<td> <button onclick='borrarMensaje("+respuesta[i].idMessage+")'>Borrar</button>";
         myTable+="</tr>";
     }
     myTable+="</table>";
-    $("#miListaSkate").html(myTable);
+    $("#resultadoMensajes").html(myTable);
 }
 
+function guardarInformacionMensajes(){
+    if ($("#messagetext").val().length==0 ){
 
-function agregarSkate() {
-
-    if($("#name2").val().length == 0 || $("#brand").val().length == 0 || $("#year").val().length == 0 || $("#description2").val().length == 0){
-       alert("Todos los campos son obligatorios")
+        alert("Todos los campos son obligatorios");
     }else{
+    
+    
+    let var2 = {
+        
+        messageText:$("#messagetext").val(),
+        skate:{id: +$("#select-skate").val()},
+        client:{idClient: +$("#select-client").val()},
 
-            let elemento = {
-                name: $("#name2").val(),
-                brand: $("#brand").val(),
-                year: $("#year").val(),
-                description: $("#description2").val(),
-                category:{id: +$("#select-category").val()},
-            }
-
-            let dataToSend = JSON.stringify(elemento);
-            console.log(elemento);
-
-            $.ajax({
-                type: "POST",
-                contentType: "application/json",
-                url:"http://168.138.247.22:80/api/Skate/save",
-                //url: "http://localhost:8080/api/Skate/save",
-                data: dataToSend,
-                datatype: 'json',
-
-                success: function (response) {
-                    console.log(response);
-                    console.log("Se guardo Correctamente");
-                    //Limpiar Campos
-                    $("#resultado2").empty();
-                    $("#name2").val("");
-                    $("#brand").val("");
-                    $("#year").val("");
-                    $("#description2").val("");
-                    
-
-                    //Listar Tabla
-
-                    alert("Se ha guardado Correctamente!")
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    alert("No se Guardo Correctamente")
-                }
-            });
+     
+        };
+       
+        console.log(var2);
+        $.ajax({
+        type:'POST',
+        contentType: "application/json; charset=utf-8",
+        dataType: 'JSON',
+        data: JSON.stringify(var2),
+        
+        url:"http://168.138.247.22:80/api/Message/save",
+       
+        
+        success:function(response) {
+                console.log(response);
+            console.log("Se guardo correctamente");
+            alert("Se guardo correctamente");
+            window.location.reload()
+    
+        },
+        
+        error: function(jqXHR, textStatus, errorThrown) {
+             window.location.reload()
+            alert("No se guardo correctamente");
+    
+    
+        }
+        });
     }
 }
 
-//Capturar informacion para Actualizar
-function cargarDatosSkate(id) {
+function actualizarInformacionMensaje(idElemento){
+    let myData={
+        idMessage:idElemento,
+        messageText:$("#messagetext").val(),
+        skate:{id: +$("#select-skate").val()},
+        client:{idClient: +$("#select-client").val()},
+
+    
+
+
+    };
+    console.log(myData);
+    let dataToSend=JSON.stringify(myData);
     $.ajax({
-        dataType: 'json',
-        url:"http://168.138.247.22:80/api/Skate/"+id,
-        //url: "http://localhost:8080/api/Skate/" + id,
-        type: 'GET',
-
-        success: function (response) {
-            console.log(response);
-            var item = response;
-
-            $("#id").val(item.id);
-            $("#name2").val(item.name);
-            $("#brand").val(item.brand);
-            $("#year").val(item.year);
-            $("#description2").val(item.description);
-
-        },
-
-        error: function (jqXHR, textStatus, errorThrown) {
-
+        url:"http://168.138.247.22:80/api/Message/update",
+        type:"PUT",
+        data:dataToSend,
+        contentType:"application/JSON",
+        datatype:"JSON",
+        success:function(respuesta){
+            $("#resultado").empty();
+            $("#messagetext").val("");
+           
+            autoInicioMensajes();
+            alert("se ha Actualizado correctamente el Mensaje")
         }
     });
-}
-//Manejador DELETE
-function borrar(idElemento) {
-    var elemento = {
-        id: idElemento
-    }
 
-    var dataToSend = JSON.stringify(elemento);
-console.log(dataToSend);
-    $.ajax(
-        {
-            dataType: 'json',
-            data: dataToSend,
-            url:"http://168.138.247.22:80/api/Skate/"+idElemento,
-            //url: "http://localhost:8080/api/Skate/" + idElemento,
-            type: 'DELETE',
-            contentType: "application/JSON",
-            success: function (response) {
-                console.log(response);
-                $("#miListaSkate").empty();
-
-                alert("se ha Eliminado Correctamente!")
-            },
-
-            error: function (jqXHR, textStatus, errorThrown) {
-                alert("No se Elimino Correctamente!")
-            }
-        });
 }
 
-//Manejador PUT
-function actualizar(idElemento) {
-    
-    if($("#name2").val().length == 0 || $("#brand").val().length == 0 || $("#year").val().length == 0 || $("#description2").val().length == 0){
-        alert("Todos los campos deben estar llenos")
-    }else{
-        let elemento = {
-            id: idElemento,
-            name: $("#name2").val(),
-            brand: $("#brand").val(),
-            year: $("#year").val(),
-            description: $("#description2").val(),
-            category:{id: +$("#select-category").val()},
+function borrarMensaje(idElemento){
+    let myData={
+        idMessage:idElemento
+    };
+    let dataToSend=JSON.stringify(myData);
+    console.log(dataToSend);
+    $.ajax({
+        url:"http://168.138.247.22:80/api/Message/"+idElemento,
+        type:"DELETE",
+        data:dataToSend,
+        contentType:"application/JSON",
+        datatype:"JSON",
+        success:function(respuesta){
+            $("#resultado").empty();
+            autoInicioMensajes();
+            alert("Se ha Eliminado.")
         }
+    });
 
-        console.log(elemento);
-        let dataToSend = JSON.stringify(elemento);
-
-        $.ajax({
-            datatype: 'json',
-            data: dataToSend,
-            contentType: "application/JSON",
-            url:"http://168.138.247.22:80/api/Skate/update",
-            //url: "http://localhost:8080/api/Skate/update",
-            type: "PUT",
-
-            success: function (response) {
-                console.log(response);
-                $("#miListaSkate").empty();
-                listarSkate();
-                alert("se ha Actualizado Correctamente!")
-
-                //Limpiar Campos
-                $("#resultado2").empty();
-                $("#id").val("");
-                $("#name2").val("");
-                $("#brand").val("");
-                $("#year").val("");
-                $("#description2").val("");
-
-
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                alert("No se Actualizo Correctamente!")
-            }
-        });
-    }
 }

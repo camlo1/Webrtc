@@ -47,30 +47,28 @@
        <h3 class="Texto-Tablas">Formulario de tabla Carros</h3>
        
        <div id="resultadoCar"></div>
-       <script type="text/javascript">
-       window.onload = autoInicioCar();
-       </script>
+       <script type="text/javascript">window.onload = autoInicioCar(); </script>
                 
        <div>
            <input type="text" id="CarName" placeholder="nombre">
            <input type="text" id="CarBrand" placeholder="marca">
            <input type="number" id="CarYear" placeholder="año">
            <input type="text" id="CarDescription" placeholder="descripción">
-           <p>gama:</p>                  
-           <select id="Select-Gama"></select>
-       
+           
+           
+        <p>Gama:</p>
+           <select id="select-gama"></select>
+        <script type="text/javascript">window.onload = relacionGama();</script>
+
+      
        </div>
 
-           <div>
-           <button onclick="guardarCar();" >Guardar Carro</button>
-
-           </div>
+        <div>
+        <button onclick="guardarCar();" >Guardar Carro</button>
+        </div>
            
        <br><br><br>
        </div>
-
-
-
 
 
 <br><br><br>

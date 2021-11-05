@@ -1,70 +1,89 @@
 
- 
-
-
-function autoInicioGama(){
+function relacionCar(){
+    
     $.ajax({
-        url:"http://140.238.133.71:8080/api/Gama/all",
-        type: "GET",
-        datatype: "JSON",
-        success: function (respuesta) {
-            console.log(respuesta);
-            pintarRespuestaGama(respuesta);
-        }
-
-    });
-
-}
-
-
-/**
-function autoInicioGama(){
-    console.log("se esta ejecutando tabla Gama")
-    $.ajax({
-        url:"http://140.238.133.71:8080/api/Gama/all",
+        url:"http://140.238.133.71:8080/api/Car/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){
-            console.log(respuesta);
-            pintarRespuestaGama(respuesta);
-            let $select = $("#Select-Gama");
-            $.each(respuesta, function (_id, name) {
-                $select.append('<option value='+name.id+'>'+name.name+'</option>');
-                console.log("select "+name.id);
+
+            let $select = $("#select-car");
+            $.each(respuesta, function (idCar, name) {
+                $select.append('<option value='+idCar.idCar+'>'+name.name+'</option>');
+            
             }); 
         }
     
     })
-
 }
+
+
+/**
+ * 
+ * -------tabla cliente-------
+ * 
+ * GET relacion gama             (X)
+ * 
+ * ---------------------------
+ * ------funciones CRUD-------
+ * ---------------------------
+ * 
+ * tabla con botones             (X)
+ * 
+ * 
+ * GET                           (X)
+ * 
+ * 
+ * POST                          (X)
+ * 
+ * 
+ * PUT                           (X)
+ * 
+ * 
+ * DELETE                        (X)
+ *  
  */
 
+
+/** PINTAR TABLA */
 function pintarRespuestaGama(respuesta){
-    console.log("CONTENIDO GAMA");
-    console.log(respuesta);
+
     let myTable="<table>";
     for(i=0;i<respuesta.length;i++){
         myTable+="<tr>";
         myTable+="<td>"+respuesta[i].name+"</td>";
         myTable+="<td>"+respuesta[i].description+"</td>";
-        myTable+="<td>"+respuesta[i].car+"</td>";
-        //myTable+="<td>"+respuesta[i].cars.car+"</td>";
+        myTable+="<td>"+respuesta[i].cars+"</td>";
         myTable+="<td> <button onclick=' actualizarGama("+respuesta[i].idGama+")'>Actualizar</button>";
-        myTable+="<td> <button onclick='borrarGama("+respuesta[i].idGama+")'>Borrar</button>";
+        myTable+="<td> <button onclick=' borrarGama("+respuesta[i].idGama+")'>Borrar</button>";
         myTable+="</tr>";
     }
     myTable+="</table>";
     $("#resultadoGama").html(myTable);
 }
 
-function guardarGama()
-{
+/** GET */
+ function autoInicioGama(){
+    console.log("se esta ejecutando tabla Gama")
+    $.ajax({
+        url:"http://140.238.133.71:8080/api/Gama/all",
+        type:"GET",
+        datatype:"JSON",
+        success: function (respuesta) {
+            console.log(respuesta);
+            pintarRespuestaGama(respuesta);
+        }
+    
+    });
+
+}
+/** POST */
+function guardarGama(){
     let var2 = 
     {
-        name:$("#GamaName").val(),
-        description:$("#GamaDescription").val(),
-        //car:$("#Select-Car").val(),
-        car:{idCar: +$("#Select-Car").val()},
+        name:$("#GamaName").val(""),
+        description:$("#GamaDescription").val(""),
+        car:{idGama: $("#select-car").val("")},
     };
       
     $.ajax
@@ -73,7 +92,6 @@ function guardarGama()
         contentType: "application/json; charset=utf-8",
         dataType: 'JSON',
         data: JSON.stringify(var2),
-        
         url:"http://140.238.133.71:8080/api/Gama/save",
               
         success:function(respuesta) 
@@ -81,7 +99,6 @@ function guardarGama()
             console.log(respuesta);
             console.log("Se guardo correctamente la gama");
             alert("Se guardo correctamente la gama");
-            pintarRespuestaGama
             window.location.reload()
         },
         
@@ -93,19 +110,14 @@ function guardarGama()
     });
 }
 
+/** PUT */
 function actualizarGama(idElemento){
-    
-    if ($("#GamaName").val().length==0 || $("#GamaDescription").val().length==0){
-
-        alert("Todos los campos son obligatorios");
-    }else{
-    
-    
-    let myData={
+    let myData=
+    {
         idGama:idElemento,
         name:$("#GamaName").val(),
         description:$("#GamaDescription").val(),
-        cars:{car: +$("#Select-Car").val()},
+        car:{id: $("#select-car").val()},
     };
     console.log(myData);
     let dataToSend=JSON.stringify(myData);
@@ -116,18 +128,22 @@ function actualizarGama(idElemento){
         contentType:"application/JSON",
         datatype:"JSON",
         success:function(respuesta){
-            $("#GamaName").val("");
-            $("#GamaDescription").val("");
+            $("#CarName").val("");
+            $("#CarBrand").val("");
             autoInicioGama();
-            alert("se ha Actualizado correctamente la gama")
-        }
-    });}
+            alert("Se ha actualizado correctamente la gama")
 
+        }
+
+    });
 }
+
+
+/** DELETE */
 
 function borrarGama(idElemento){
     let myData={
-        id:idElemento
+        id:idElemento,
     };
     let dataToSend=JSON.stringify(myData);
     $.ajax({
@@ -135,12 +151,13 @@ function borrarGama(idElemento){
         type:"DELETE",
         data:dataToSend,
         contentType:"application/JSON",
-        datatype:"JSON",
+        dataType:"JSON",
         success:function(respuesta){
             $("#resultadoGama").empty();
             autoInicioGama();
-            alert("Se ha Eliminado.")
+            alert("Se ha borrado correctamente la gama")
         }
     });
+}  
 
-}
+
